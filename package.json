@@ -3,7 +3,12 @@
   "type": "module",
   "private": true,
   "module": "index.ts",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
+    "build": "tsx ./index.ts build",
+    "dev": "tsx ./index.ts dev",
     "go": "tsx ./index.ts"
   },
   "peerDependencies": {
@@ -13,12 +18,13 @@
     "@antfu/eslint-config": "^5.4.1",
     "@parcel/watcher": "^2.5.1",
     "@socketregistry/yocto-spinner": "^1.0.24",
-    "@types/bun": "latest",
+    "@types/bun": "^1.3.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.37.0",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2",
     "postcss": "^8.5.6",
     "postcss-nesting": "^13.0.2",
     "tsx": "^4.20.6"
   }
-
 }

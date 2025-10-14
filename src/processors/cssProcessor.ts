@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url'
 import autoprefixer from 'autoprefixer'
 import postcss from 'postcss'
 import postcssNesting from 'postcss-nesting'
+import logger from '../utils/logger'
 import { postcssProcessor } from '../utils/postcssProcessor'
 import { createSpinner } from '../utils/spinner'
 
@@ -91,9 +92,9 @@ const _isCliRun = (() => {
 if (_isCliRun && process.argv[1]?.endsWith('cssProcessor.ts')) {
   const useHash = process.env.STYLES_HASH === '1'
   buildStyles({ useHash }).then((r) => {
-    console.log('Written styles:', r)
+    logger.info({ written: r }, 'Written styles')
   }).catch((err) => {
-    console.error('Error building styles:', err)
+    logger.error({ err }, 'Error building styles')
     process.exit(1)
   })
 }

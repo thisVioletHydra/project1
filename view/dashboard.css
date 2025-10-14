@@ -2,7 +2,7 @@
 /* пример другого слоя с глубокой вложенностью */
 .header {
   display: flex;
-  .title {
+}
+.header .title {
     font-weight: 700;
   }
-}

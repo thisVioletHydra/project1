@@ -1,0 +1,7 @@
+/* пример вложенного postcss-файла */
+.button-primary {
+  color: white;
+}
+.button-primary:hover {
+    color: #eee;
+  }
