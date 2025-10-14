@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import path from 'node:path'
 import { subscribe } from '@parcel/watcher'
 import { processCSS } from './src/processors/cssProcessor'

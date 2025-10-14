@@ -2,9 +2,12 @@
 .vscode/settings.json
 LICENSE
 README.md
+ai-matches.txt
 bun.lock
 eslint.config.mjs
+git-files.txt
 index.ts
+keyfiles.txt
 package.json
 src/processors/cssProcessor.ts
 src/processors/tsProcessor.ts
