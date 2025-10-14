@@ -1,0 +1,28 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "customSyntax": "postcss-css",
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "tailwind",
+        "apply",
+        "screen",
+        "layer",
+        "mixin",
+        "include",
+        "function",
+        "if",
+        "else"
+      ]
+    }],
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "declaration-block-trailing-semicolon": "always",
+    "no-descending-specificity": null,
+    "indentation": 2,
+    "order/order": ["custom-properties", "declarations"]
+  }
+}

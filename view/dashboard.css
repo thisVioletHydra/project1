@@ -1,4 +1,4 @@
-@import url('../footer/form.postcss');
+@import '../footer/form.postcss';
 /* пример другого слоя с глубокой вложенностью */
 .header {
   display: flex;
