@@ -8,12 +8,19 @@ import postcssNesting from 'postcss-nesting'
 import postcssPresetEnv from 'postcss-preset-env'
 import postcssPxToRem from 'postcss-pxtorem'
 import addVarFallbacks from '../plugins/addVarFallbacks'
+import checkVarsAgainstGlobals from '../plugins/checkVarsAgainstGlobals'
+import cleanGlobalVars from '../plugins/cleanGlobalVars'
 import dedupeButKeepFallbacks from '../plugins/dedupeButKeepFallbacks'
+import extractAndExportGlobalVars from '../plugins/extractAndExportGlobalVars'
+import removeComments from '../plugins/removeComments'
 import transparentToRgba from '../plugins/transparentToRgba'
 
 export const postcssProcessor = postcss([
-  postcssImport(), // 1 — раскрытие импортов
-  postcssPresetEnv({ // 2 — обработка новых фич, переменных, nesting, фоллбеки IE
+  postcssImport(),
+  removeComments(),
+  extractAndExportGlobalVars({ outFile: 'view/variables.css' }),
+
+  postcssPresetEnv({
     stage: 3,
     browsers: 'ie 11',
     features: {
@@ -21,13 +28,19 @@ export const postcssProcessor = postcss([
       'nesting-rules': true,
     },
   }),
-  postcssNesting(), // 3 — (на случай, если нужен дополнительный nesting)
-  dedupeButKeepFallbacks(),
-  transparentToRgba(), // 5 — конвертация transparent → rgba(0,0,0,0)
+  postcssNesting(),
+
   addVarFallbacks(),
-  postcssCustomProperties({ preserve: true }), // 4 — контроль переменных, ручные фоллбеки
-  postcssColorRgbaFallback(), // 6 — rgba фоллбеки
-  colorConverter({ outputColorFormat: 'rgb', alwaysAlpha: true }), // 7 — все цвета в rgb/rgba
-  autoprefixer(), // 8 — автопрефиксы (после всех трансформаций)
-  postcssPxToRem({ rootValue: 16, propList: ['*', '!font-size'] }), // 9 — перевод px → rem в самом конце
+  transparentToRgba(),
+  postcssCustomProperties({ preserve: true }),
+
+  postcssColorRgbaFallback(),
+  colorConverter({ outputColorFormat: 'rgb', alwaysAlpha: true }),
+  autoprefixer(),
+
+  postcssPxToRem({ rootValue: 16, propList: ['*', '!font-size'] }),
+
+  cleanGlobalVars(),
+  dedupeButKeepFallbacks(), // last for clean output
+  checkVarsAgainstGlobals(), // validation after all
 ])

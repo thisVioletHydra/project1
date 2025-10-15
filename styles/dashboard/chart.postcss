@@ -1,0 +1,60 @@
+.react-directory-row {
+  height: var(--token-height-row);
+  font-size: 14px; /* фиксированной px, можно вынести если нужно */
+}
+
+.react-directory-row td {
+  padding-left: var(--token-base-size-16);
+  text-align: left;
+  border-top: var(--token-border-width-thin) solid var(--token-border-color-default);
+}
+
+.react-directory-row:hover {
+  background-color: var(--token-bg-muted);
+}
+
+.react-directory-filename-column {
+  display: flex;
+  height: var(--token-height-row);
+  padding-right: var(--token-base-size-16);
+  align-items: center;
+  gap: var(--token-gap-vertical) var(--token-gap-horizontal);
+}
+
+.react-directory-filename-column .react-directory-filename-cell {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--token-base-text-weight-normal);
+}
+
+.react-directory-filename-column .icon-directory {
+  color: var(--token-treeview-icon-color-rest);
+}
+
+.react-directory-truncate,
+.react-directory-commit-message {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.react-directory-commit-age {
+  padding-right: var(--token-base-size-16);
+  color: var(--token-fg-muted);
+  text-align: right;
+}
+
+.react-tree-toggle-button-with-indicator::after {
+  position: absolute;
+  top: 0.1875rem;
+  right: 0.125rem;
+  display: inline-block;
+  width: var(--token-base-size-8);
+  height: var(--token-base-size-8);
+  content: "";
+  background: var(--token-bg-accent-emphasis);
+  border: var(--token-border-width-thick) solid var(--token-bg-default);
+  border-radius: 50%;
+}

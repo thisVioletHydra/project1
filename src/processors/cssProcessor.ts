@@ -8,11 +8,12 @@ import { createSpinner } from '../utils/spinner'
 interface Opts {
   stylesRoot?: string
   outDir?: string
+  useHash?: boolean
 }
 
 async function findMasterFile(dir: string): Promise<string | null> {
   // Ищет index.postcss либо main.postcss как мастер-файл слоя
-  const candidates = ['index.postcss', 'main.postcss']
+  const candidates = ['main.postcss']
   for (const name of candidates) {
     const file = path.join(dir, name)
     try {

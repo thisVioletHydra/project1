@@ -1,52 +1,98 @@
-:root {
-  --token-null: rgba(0, 0, 0, 0);
-  --token-text: rgba(204, 204, 204, 1);
-}
-
-/* пример другого слоя с глубокой вложенностью */
-
 .header {
   display: flex;
-  background-color: rgba(50, 66, 52, 1);
+  background-color: rgba(9, 132, 252, 1);
+  background-color: var(--color-blue, rgba(9, 132, 252, 1));
 }
-
 .header .title {
     font-weight: 700;
     color: rgba(204, 204, 204, 1);
     color: var(--token-text, rgba(204, 204, 204, 1));
   }
-
 @media (max-width: 768px) {
-
 .header .title {
       font-weight: normal;
   }
     }
-
 body {
   font-size: 14px;
   background-color: rgba(0, 0, 0, 0);
   background-color: var(--token-null, rgba(0, 0, 0, 0));
 }
-
-:root {
-  --token-color-1: rgba(255, 0, 0, 1);
-}
-
-:root {
-  --param: rgba(255, 215, 0, 1);
-}
-
 .form {
-  color: rgba(255, 215, 0, 1);
-  color: var(--param, rgba(255, 215, 0, 1));
+  color: rgba(255, 0, 0, 1);
+  color: var(--param, rgba(255, 0, 0, 1));
 }
-
 .form .label {
     color: rgba(255, 0, 0, 1);
   }
-
 .form .input {
     padding: 1rem;
     font-size: 1rem;
   }
+.react-directory-row {
+  height: 2.5rem;
+  height: var(--token-height-row, 2.5rem);
+  font-size: 14px;
+}
+.react-directory-row td {
+  padding-left: 1rem;
+  padding-left: var(--token-base-size-16, 16px);
+  text-align: left;
+  border-top: 0.0625rem solid rgba(209, 213, 219, 1);
+  border-top: var(--token-border-width-thin, 1px) solid var(--token-border-color-default, rgba(209, 213, 219, 1));
+}
+.react-directory-row:hover {
+  background-color: rgba(243, 244, 246, 1);
+  background-color: var(--token-bg-muted, rgba(243, 244, 246, 1));
+}
+.react-directory-filename-column {
+  display: flex;
+  height: 2.5rem;
+  height: var(--token-height-row, 2.5rem);
+  padding-right: 1rem;
+  padding-right: var(--token-base-size-16, 16px);
+  align-items: center;
+  gap: 0.25rem 0.625rem;
+  gap: var(--token-gap-vertical, 0.25rem) var(--token-gap-horizontal, 0.625rem);
+}
+.react-directory-filename-column .react-directory-filename-cell {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  font-weight: var(--token-base-text-weight-normal, 400);
+}
+.react-directory-filename-column .icon-directory {
+  color: rgba(156, 163, 175, 1);
+  color: var(--token-treeview-icon-color-rest, rgba(156, 163, 175, 1));
+}
+.react-directory-truncate,
+.react-directory-commit-message {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.react-directory-commit-age {
+  padding-right: 1rem;
+  padding-right: var(--token-base-size-16, 16px);
+  color: rgba(107, 114, 128, 1);
+  color: var(--token-fg-muted, rgba(107, 114, 128, 1));
+  text-align: right;
+}
+.react-tree-toggle-button-with-indicator::after {
+  position: absolute;
+  top: 0.1875rem;
+  right: 0.125rem;
+  display: inline-block;
+  width: 0.5rem;
+  width: var(--token-base-size-8, 8px);
+  height: 0.5rem;
+  height: var(--token-base-size-8, 8px);
+  content: "";
+  background: rgba(37, 99, 235, 1);
+  background: var(--token-bg-accent-emphasis, rgba(37, 99, 235, 1));
+  border: 0.125rem solid rgba(249, 250, 251, 1);
+  border: var(--token-border-width-thick, 2px) solid var(--token-bg-default, rgba(249, 250, 251, 1));
+  border-radius: 50%;
+}

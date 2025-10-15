@@ -1,7 +1,8 @@
-/* пример вложенного postcss-файла */
 .button-primary {
-  color: white;
+  color: var(--token-bg-default);
+  background-color: var(--color-blue1);
+  /* ! undefined: --color-blue1 (переменная не определена в variables.css) */
 }
 .button-primary:hover {
-    color: #eee;
+    color: rgba(238, 238, 238, 1);
   }
