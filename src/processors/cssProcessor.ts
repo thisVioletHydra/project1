@@ -1,8 +1,9 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
+import { flushVars, logVarsStats } from '../binaryBrain'
+import { postcssProcessor } from '../instance/postcss'
 import logger from '../utils/logger'
-import { postcssProcessor } from '../utils/postcssProcessor'
 import { createSpinner } from '../utils/spinner'
 
 interface Opts {
@@ -49,7 +50,11 @@ export async function buildStyles(opts: Opts = {}) {
       const inputCss = await fs.readFile(masterFile, 'utf8')
       const processed = await postcssProcessor.process(inputCss, { from: masterFile })
       const outPath = path.join(outDir, `${layer}.css`)
-      await fs.writeFile(outPath, processed.css, 'utf8')
+      await Promise.all([
+        fs.writeFile(outPath, processed.css, 'utf8'),
+        flushVars(),
+      ])
+      await logVarsStats()
       spinner.success(`view/${layer}.css готов!`)
     }
     catch (e) {

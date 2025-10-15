@@ -1,44 +1,28 @@
 import type { Declaration, PluginCreator, Root } from 'postcss'
-import fs from 'node:fs'
-import path from 'node:path'
-import process from 'node:process'
-import logger from '../utils/logger'
+import { getAllVars } from '../binaryBrain'
 
-const VARS_PATH = path.resolve(process.cwd(), 'view/variables.css')
-
-// Быстрый парсер variables.css
-function parseCssVarsFromFile(filePath: string): Set<string> {
-  const raw = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : ''
-  return new Set(raw.match(/--[\w-]+(?=:)/g) || [])
-}
-
-const checkVarsAgainstGlobals: PluginCreator<undefined> = () => {
-  const varSet = parseCssVarsFromFile(VARS_PATH)
-  return {
-    postcssPlugin: 'check-vars-against-globals',
-    Once(root: Root) {
-      root.walkDecls((decl: Declaration) => {
-        const varMatches = Array.from(decl.value.matchAll(/var\((--[\w-]+)/g))
-        for (const [, varName] of varMatches) {
-          if (!varSet.has(varName as string)) {
-            // Вставить комментарий только если parent определён
-            if (decl.parent) {
-              decl.parent.insertAfter(decl, {
-                type: 'comment',
-                text: `! undefined: ${varName} (переменная не определена в variables.css)`,
-              })
-            }
-            // Логгируем с безопасной подстановкой файлов
-            const file = decl.source?.input.file ?? '[inline-css]'
-            const line = decl.source?.start?.line ?? '-'
-            const col = decl.source?.start?.column ?? '-'
-            logger.warn(`[TOKENS][WARN] Не найдена переменная: '${varName}' в ${file} (${line}:${col})`)
+const checkVarsAgainstGlobals: PluginCreator<undefined> = () => ({
+  postcssPlugin: 'checkVarsAgainstGlobals',
+  async Once(root: Root) {
+    const allVars = await getAllVars()
+    root.walkDecls((decl: Declaration) => {
+      const regex = /var\(\s*(--[\w-]+)\s*(?:,[^)]+)?\)/g
+      let match
+      while ((match = regex.exec(decl.value))) {
+        const varName = match[1]
+        if (!(varName in allVars)) {
+          // Проверяем, не дублируем ли комментарий
+          if (
+            !decl.next()
+            || decl.next().type !== 'comment'
+            || !decl.next().text.includes(`! undefined: ${varName}`)
+          ) {
+            decl.after({ type: 'comment', text: `! undefined: ${varName}` })
           }
         }
-      })
-    },
-  }
-}
-
+      }
+    })
+  },
+})
 checkVarsAgainstGlobals.postcss = true
 export default checkVarsAgainstGlobals

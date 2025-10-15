@@ -1,7 +1,8 @@
 .button-primary {
-  color: var(--token-bg-default);
-  background-color: var(--color-blue1);
-  /* ! undefined: --color-blue1 (переменная не определена в variables.css) */
+  color: var(--token-panel-bg);
+  /* ! undefined: --token-panel-bg */
+  background-color: var(--color-blue);
+  /* ! undefined: --color-blue */
 }
 .button-primary:hover {
     color: rgba(238, 238, 238, 1);

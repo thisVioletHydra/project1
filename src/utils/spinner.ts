@@ -1,13 +1,7 @@
-import yoctoSpinner from '@socketregistry/yocto-spinner'
+import type { Spinner } from 'yocto-spinner'
+import yoctoSpinner from 'yocto-spinner'
 
-export interface Spinner {
-  start: (text?: string) => this
-  success: (text?: string) => this
-  error: (text?: string) => this
-  stop: (text?: string) => this
-  warning: (text?: string) => this
-}
-
+export type SpinnerType = Spinner
 export function createSpinner(text: string = 'Loading...'): Spinner {
-  return yoctoSpinner({ text, color: 'cyan' })
+  return yoctoSpinner({ text, color: 'yellow' })
 }

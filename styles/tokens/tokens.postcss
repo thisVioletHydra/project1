@@ -1,21 +1,77 @@
 :root {
-  /* Размеры */
-  --token-base-size-16: 16px;
-  --token-base-size-8: 8px;
-  --token-base-text-weight-normal: 400;
-  --token-border-width-thin: 1px;
-  --token-border-width-thick: 2px;
+  /* Базовые токены фона */
+  --token-bg: var(--color-bg);
+  --token-bg-subtle: var(--color-bg-light);
+  --token-bg-surface: var(--color-surface);
+  --token-bg-muted: #f3f4f6;
+  --token-bg-accent: var(--color-accent);
+  --token-bg-primary: var(--color-primary);
+  --token-bg-secondary: var(--color-secondary);
+  --token-bg-success: var(--color-success);
+  --token-bg-warning: var(--color-warning);
+  --token-bg-error: var(--color-error);
+  --token-bg-disabled: var(--color-bg-dark);
 
-  /* Цвета */
-  --token-border-color-default: #d1d5db; /* замена для var(--color-border-default) */
-  --token-bg-muted: #f3f4f6;             /* замена для var(--color-canvas-subtle) */
-  --token-fg-muted: #6b7280;             /* замена для var(--color-fg-muted) */
-  --token-treeview-icon-color-rest: #9ca3af; /* замена для var(--color-icon-directory) */
-  --token-bg-accent-emphasis: #2563eb;  /* замена для var(--color-accent-fg) */
-  --token-bg-default: #f9fafb;           /* замена для var(--color-canvas-default) */
+  /* Лицевая часть (текст, иконки, контент) */
+  --token-fg: var(--color-text);
+  --token-fg-subtle: var(--color-text-secondary);
+  --token-fg-accent: var(--color-accent);
+  --token-fg-primary: var(--color-primary);
+  --token-fg-secondary: var(--color-secondary);
+  --token-fg-success: var(--color-success);
+  --token-fg-warning: var(--color-warning);
+  --token-fg-error: var(--color-error);
+  --token-fg-disabled: var(--color-text-secondary);
+  --token-fg-on-primary: var(--color-text-on-accent);
+  --token-fg-on-accent: var(--color-text-on-accent);
 
-  /* Универсальные токены */
-  --token-height-row: 2.5rem;
-  --token-gap-horizontal: 0.625rem;
-  --token-gap-vertical: 0.25rem;
+  /* Бордеры и контуры */
+  --token-border: #d1d5db;
+  --token-border-accent: var(--color-accent);
+  --token-border-primary: var(--color-primary);
+  --token-border-secondary: var(--color-secondary);
+  --token-border-success: var(--color-success);
+  --token-border-warning: var(--color-warning);
+  --token-border-error: var(--color-error);
+  --token-border-focus: var(--color-accent);
+
+  /* Состояния и интерактивность */
+  --token-hover-bg: var(--color-primary-light);
+  --token-active-bg: var(--color-primary-dark);
+  --token-focus-ring: var(--color-accent);
+  --token-disabled-bg: var(--color-bg-dark);
+  --token-disabled-fg: var(--color-text-secondary);
+  --token-selection-bg: var(--color-primary-light);
+
+  /* Иконки */
+  --token-icon: var(--color-primary);
+  --token-icon-subtle: #9ca3af;
+  --token-icon-accent: var(--color-accent);
+  --token-icon-error: var(--color-error);
+  --token-icon-warning: var(--color-warning);
+  --token-icon-success: var(--color-success);
+
+  /* Карточки, модали, панели */
+  --token-card-bg: var(--color-surface);
+  --token-modal-bg: var(--color-bg-light);
+  --token-panel-bg: var(--color-surface);
+  --token-panel-border: var(--token-border);
+
+  /* Навигация */
+  --token-nav-bg: var(--color-bg);
+  --token-nav-active-bg: var(--color-primary);
+  --token-nav-active-fg: var(--color-text-on-accent);
+
+  /* Тени и эффекты */
+  --token-shadow: rgb(9 132 252 / 8%);
+  --token-shadow-active: rgb(213 0 249 / 16%);
+  --token-skeleton-bg: var(--color-bg-dark);
+  --token-loader: var(--color-secondary);
+
+  /* Типографика */
+  --token-font-primary: var(--font-primary);
+  --token-font-secondary: var(--font-secondary);
+  --token-font-weight-normal: 400;
+  --token-font-weight-medium: 500;
+  --token-font-weight-bold: 700;
 }
