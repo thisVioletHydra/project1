@@ -1,18 +1,19 @@
 :root {
-  --token-null: transparent;
-  --token-text: #ccc;
+  --token-null: rgba(0, 0, 0, 0);
+  --token-text: rgba(204, 204, 204, 1);
 }
 
 /* пример другого слоя с глубокой вложенностью */
 
 .header {
   display: flex;
+  background-color: rgba(50, 66, 52, 1);
 }
 
 .header .title {
     font-weight: 700;
-    color: #ccc;
-    color: var(--token-text);
+    color: rgba(204, 204, 204, 1);
+    color: var(--token-text, rgba(204, 204, 204, 1));
   }
 
 @media (max-width: 768px) {
@@ -23,13 +24,26 @@
     }
 
 body {
-  font-size: 0.875rem;
-  color: transparent;
-  color: var(--token-null);
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0);
+  background-color: var(--token-null, rgba(0, 0, 0, 0));
+}
+
+:root {
+  --token-color-1: rgba(255, 0, 0, 1);
+}
+
+:root {
+  --param: rgba(255, 215, 0, 1);
+}
+
+.form {
+  color: rgba(255, 215, 0, 1);
+  color: var(--param, rgba(255, 215, 0, 1));
 }
 
 .form .label {
-    color: red;
+    color: rgba(255, 0, 0, 1);
   }
 
 .form .input {
