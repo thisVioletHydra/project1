@@ -4,35 +4,20 @@
 }
 
 /* пример другого слоя с глубокой вложенностью */
-
 .header {
   display: flex;
-}
 
-.header .title {
+  .title {
     font-weight: 700;
-    color: #ccc;
-    color: var(--token-text);
-  }
+    color: var(--token-text); 
 
-@media (max-width: 768px) {
-
-.header .title {
+    @media (width <= 768px) {
       font-weight: normal;
-  }
     }
+  }
+}
 
 body {
-  font-size: 0.875rem;
-  color: transparent;
+  font-size: 14px;
   color: var(--token-null);
-}
-
-.form .label {
-    color: red;
-  }
-
-.form .input {
-    padding: 1rem;
-    font-size: 1rem;
-  }
+} 
